@@ -116,13 +116,20 @@
 				},
 				resetAnimation: function () {
 					loadVisualisation(this);
+				},
+				valuesFromSeed: function () {
+					var rcrand = new Rc4Random(this.seed.toString());
+					this.rule = Math.floor(rcrand.getRandomNumber()*7625597484986);
+					this.density = Math.floor(rcrand.getRandomNumber()*100);
+					this.resetAnimation();
 				}
 			}
 
 			var gui = new dat.GUI();
 			gui.add(settings, 'size', 0, 1024).step(1);
-			gui.add(settings, 'density', 0, 100);
 			gui.add(settings, 'seed');
+			gui.add(settings, 'valuesFromSeed');
+			gui.add(settings, 'density', 0, 100).listen();
 			gui.add(settings, 'rule', 0, 7625597484986).step(1).listen();
 			gui.add(settings, 'randomizeRule');
 			gui.add(settings, 'resetRule');
