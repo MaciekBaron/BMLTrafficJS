@@ -101,12 +101,20 @@
 				rule: 89096871199,
 				randomizeRule: function () {
 					this.rule = Math.floor(Math.random()*7625597484986);
-					this.reset();
+					this.resetAnimation();
 				},
 				resetRule: function () {
 					this.rule = 89096871199;
+					this.resetAnimation();
 				},
-				reset: function () {
+				logRule: function () {
+					console.log("Current rule: " + this.rule);
+				},
+				inputRule: function () {
+					this.rule = +(window.prompt("Enter rule"));
+					this.resetAnimation();
+				},
+				resetAnimation: function () {
 					loadVisualisation(this);
 				}
 			}
@@ -118,7 +126,9 @@
 			gui.add(settings, 'rule', 0, 7625597484986).step(1).listen();
 			gui.add(settings, 'randomizeRule');
 			gui.add(settings, 'resetRule');
-			gui.add(settings, 'reset');
+			gui.add(settings, 'logRule');
+			gui.add(settings, 'inputRule');
+			gui.add(settings, 'resetAnimation');
 
 			loadVisualisation(settings);
 		};
