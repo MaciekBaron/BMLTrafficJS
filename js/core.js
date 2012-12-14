@@ -1,4 +1,4 @@
-var BML = function (n, mainArray) {
+var BML = function (n, mainArray, rule) {
 	this.n = n;
 
 	this.mainArray = mainArray;
@@ -14,7 +14,7 @@ var BML = function (n, mainArray) {
 		BLUE: 2
 	}
 
-	this.rule = [0,0,0,0,2,2,1,1,1,2,2,2,0,2,2,1,1,1,0,0,0,0,2,2,1,1,1];
+	this.rule = rule;
 };
 
 BML.prototype = {
@@ -41,9 +41,9 @@ BML.prototype = {
 		for (var x = 0; x < this.n; x++) {
 			for (var y = 0; y < this.n; y++) {
 				var index = (x + y * canvasWidth) * 4;
-				canvasData.data[index    ] = (this.mainArray[x][y] == this.State.RED) ? 255 : 0; // Red
+				canvasData.data[index    ] = (this.mainArray[x][y] == this.State.RED) ? 200 : 0; // Red
 				canvasData.data[index + 1] = 0; // Green
-				canvasData.data[index + 2] = (this.mainArray[x][y] == this.State.BLUE) ? 255 : 0; // Blue
+				canvasData.data[index + 2] = (this.mainArray[x][y] == this.State.BLUE) ? 200 : 0; // Blue
 				canvasData.data[index + 3] = (this.mainArray[x][y] == this.State.EMPTY) ? 0 : 255; //Alpha
 			}
 		}
