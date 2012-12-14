@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="js/lib/dat.gui.min.js"></script>
+		<script src="js/core.js"></script>
+		<script src="js/rc4random.js"></script>
+	</head>
+	<body onload="loadVisualisation({n: 512, density: 98, seed: 234})">
+		<h1>Biham&ndash;Middleton&ndash;Levine traffic model</h1>
+		<canvas width="512" height="512" style="border: 1px solid black; background-color: white" id="my_canvas"></canvas>
+		<script>
+		var visInterval;
+		function loadVisualisation(settings) {
+			clearInterval(visInterval);
+			var my_canvas = document.getElementById("my_canvas");
+			var ctx = my_canvas.getContext("2d");
+			n = settings.n
+			my_canvas.width = n;
+			my_canvas.height = n;
+			main = new Array(n);
+			for (var i = 0; i < n; i++) {
+				main[i] = new Array(n);
+			}
+
+			support = new Array(n);
+			for (var i = 0; i < n; i++) {
+				support[i] = new Array(n);
+			}
+
+			var rcrand = new Rc4Random(settings.seed.toString());
+
+			for (var x = 0; x < n; x++) {
+				for (var y = 0; y < n; y++) {
+					main[x][y] = 0;
+					if (Math.floor(rcrand.getRandomNumber()*100)<settings.density) {
+						main[x][y] = Math.floor(rcrand.getRandomNumber()*2)+1;
+					}
+					support[x][y] = 0;
+				}
+			}
+
+			var engine = new BML(n, main);
+
+			visInterval = setInterval(function () {
+				engine.move_step(1);
+				engine.render(ctx, n, n);
+			}, 1000/60);
+		}
+		
+		</script>
+	</body>
+</html>
