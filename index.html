@@ -50,6 +50,7 @@
 			n = settings.size;
 			my_canvas.width = n;
 			my_canvas.height = n;
+			my_canvas.style.backgroundColor = settings.backgroundColor;
 			main = new Array(n);
 			for (var i = 0; i < n; i++) {
 				main[i] = new Array(n);
@@ -85,7 +86,7 @@
 				}
 			}
 
-			var engine = new BML(n, main, rule);
+			var engine = new BML(n, main, rule, {first: settings.firstColor, second: settings.secondColor});
 
 			window.visInterval = setInterval(function () {
 				engine.move_step(1);
@@ -99,6 +100,9 @@
 				density: 40,
 				seed: 'myseed',
 				rule: 89096871199,
+				firstColor: [200,0,0],
+				secondColor: [0,0,200],
+				backgroundColor: "#ffffff",
 				randomizeRule: function () {
 					this.rule = Math.floor(Math.random()*7625597484986);
 					this.resetAnimation();
@@ -131,6 +135,10 @@
 			gui.add(settings, 'valuesFromSeed');
 			gui.add(settings, 'density', 0, 100).listen();
 			gui.add(settings, 'rule', 0, 7625597484986).step(1).listen();
+			var colorfolder = gui.addFolder('Colors');
+			colorfolder.addColor(settings, 'firstColor');
+			colorfolder.addColor(settings, 'secondColor');
+			colorfolder.addColor(settings, 'backgroundColor');
 			gui.add(settings, 'randomizeRule');
 			gui.add(settings, 'resetRule');
 			gui.add(settings, 'logRule');
