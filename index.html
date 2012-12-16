@@ -97,25 +97,28 @@
 		window.onload = function() {
 			var settings = {
 				size: 512,
-				density: 40,
-				seed: 'Javascript',
-				rule: 89096871199,
+				density: parseInt(getUrlVars()['d']) || 40,
+				seed: getUrlVars()['s'] || 'Javascript',
+				rule: parseInt(getUrlVars()['r']) || 89096871199,
 				firstColor: [200,0,0],
 				secondColor: [0,0,200],
 				backgroundColor: "#ffffff",
 				randomizeRule: function () {
 					this.rule = Math.floor(Math.random()*7625597484986);
 					this.resetAnimation();
+					this.setLocation();
 				},
 				resetRule: function () {
 					this.rule = 89096871199;
 					this.resetAnimation();
+					this.setLocation();
 				},
 				logRule: function () {
 					console.log("Current rule: " + this.rule);
 				},
 				inputRule: function () {
 					this.rule = +(window.prompt("Enter rule"));
+					this.setLocation();
 					this.resetAnimation();
 				},
 				resetAnimation: function () {
@@ -125,7 +128,11 @@
 					var rcrand = new Rc4Random(this.seed.toString());
 					this.rule = Math.floor(rcrand.getRandomNumber()*7625597484986);
 					this.density = Math.floor(rcrand.getRandomNumber()*100);
+					this.setLocation();
 					this.resetAnimation();
+				},
+				setLocation: function () {
+					document.location = "#?r=" + this.rule + "&s=" + encodeURIComponent(this.seed) + "&d="+this.density;
 				}
 			}
 
@@ -146,6 +153,15 @@
 			gui.add(settings, 'resetAnimation');
 
 			loadVisualisation(settings);
+
+			function getUrlVars() {
+				var vars = {};
+				var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+				    vars[key] = value;
+				});
+				return vars;
+			}
+
 		};
 		
 		</script>
