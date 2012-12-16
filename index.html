@@ -47,29 +47,25 @@
 			clearInterval(window.visInterval);
 			var my_canvas = document.getElementById("my_canvas");
 			var ctx = my_canvas.getContext("2d");
-			n = settings.size;
-			my_canvas.width = n;
-			my_canvas.height = n;
+			var width = settings.width;
+			var height = settings.height;
+			my_canvas.width = width;
+			my_canvas.height = height;
 			my_canvas.style.backgroundColor = settings.backgroundColor;
-			main = new Array(n);
-			for (var i = 0; i < n; i++) {
-				main[i] = new Array(n);
-			}
+			main = new Array(height);
 
-			support = new Array(n);
-			for (var i = 0; i < n; i++) {
-				support[i] = new Array(n);
+			for (var i = 0; i < width; i++) {
+				main[i] = new Array(height);
 			}
 
 			var rcrand = new Rc4Random(settings.seed.toString());
 
-			for (var x = 0; x < n; x++) {
-				for (var y = 0; y < n; y++) {
+			for (var x = 0; x < width; x++) {
+				for (var y = 0; y < height; y++) {
 					main[x][y] = 0;
 					if (Math.floor(rcrand.getRandomNumber()*100)<settings.density) {
 						main[x][y] = Math.floor(rcrand.getRandomNumber()*2)+1;
 					}
-					support[x][y] = 0;
 				}
 			}
 
@@ -86,17 +82,18 @@
 				}
 			}
 
-			var engine = new BML(n, main, rule, {first: settings.firstColor, second: settings.secondColor});
+			var engine = new BML(width, height, main, rule, {first: settings.firstColor, second: settings.secondColor});
 
 			window.visInterval = setInterval(function () {
 				engine.move_step(1);
-				engine.render(ctx, n, n);
+				engine.render(ctx, width, height);
 			}, 1000/60);
 		}
 
 		window.onload = function() {
 			var settings = {
-				size: 512,
+				width: 512,
+				height: 512,
 				density: parseInt(getUrlVars()['d']) || 40,
 				seed: getUrlVars()['s'] || 'Javascript',
 				rule: parseInt(getUrlVars()['r']) || 89096871199,
@@ -117,7 +114,7 @@
 					console.log("Current rule: " + this.rule);
 				},
 				inputRule: function () {
-					this.rule = +(window.prompt("Enter rule"));
+					this.rule = +(window.prompt("Enter rule")) || this.rule;
 					this.setLocation();
 					this.resetAnimation();
 				},
@@ -137,7 +134,8 @@
 			}
 
 			var gui = new dat.GUI();
-			gui.add(settings, 'size', 0, 1024).step(1);
+			gui.add(settings, 'width', 0, 1024).step(1);
+			gui.add(settings, 'height', 0, 1024).step(1);
 			gui.add(settings, 'seed');
 			gui.add(settings, 'valuesFromSeed');
 			gui.add(settings, 'density', 0, 100).listen();
