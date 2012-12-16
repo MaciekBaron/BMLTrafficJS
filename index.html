@@ -132,7 +132,7 @@
 					this.resetAnimation();
 				},
 				setLocation: function () {
-					document.location = "#?r=" + this.rule + "&s=" + encodeURIComponent(this.seed) + "&d="+this.density;
+					document.location.hash = "?r=" + this.rule + "&s=" + encodeURIComponent(this.seed) + "&d="+this.density;
 				}
 			}
 
