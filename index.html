@@ -85,9 +85,9 @@
 			var engine = new BML(width, height, main, rule, {first: settings.firstColor, second: settings.secondColor});
 
 			window.visInterval = setInterval(function () {
-				engine.move_step(1);
+				engine.move_step(settings.steps);
 				engine.render(ctx, width, height);
-			}, 1000/60);
+			}, 1000/settings.fps);
 		}
 
 		window.onload = function() {
@@ -101,32 +101,36 @@
 				firstColor: [200,0,0],
 				secondColor: [0,0,200],
 				backgroundColor: "#ffffff",
+				steps: 1,
+				fps: 60,
 				randomizeRule: function () {
 					this.rule = Math.floor(Math.random()*7625597484986);
 					this.resetAnimation();
-					this.setLocation();
+					
+				},
+				randomizeBoth: function () {
+					this.density = Math.floor(Math.random()*100);
+					this.randomizeRule();
 				},
 				resetRule: function () {
 					this.rule = 89096871199;
 					this.resetAnimation();
-					this.setLocation();
 				},
 				logRule: function () {
 					console.log("Current rule: " + this.rule);
 				},
 				inputRule: function () {
 					this.rule = +(window.prompt("Enter rule")) || this.rule;
-					this.setLocation();
 					this.resetAnimation();
 				},
 				resetAnimation: function () {
 					loadVisualisation(this);
+					this.setLocation();
 				},
 				valuesFromSeed: function () {
 					var rcrand = new Rc4Random(this.seed.toString());
 					this.rule = Math.floor(rcrand.getRandomNumber()*7625597484986);
 					this.density = Math.floor(rcrand.getRandomNumber()*100);
-					this.setLocation();
 					this.resetAnimation();
 				},
 				setLocation: function () {
@@ -139,13 +143,17 @@
 			gui.add(settings, 'height', 0, 1024).step(1);
 			gui.add(settings, 'seed');
 			gui.add(settings, 'valuesFromSeed');
-			gui.add(settings, 'density', 0, 100).listen();
+			gui.add(settings, 'density', 0, 100).step(1).listen();
 			gui.add(settings, 'rule', 0, 7625597484986).step(1).listen();
+			var anifolder = gui.addFolder('Animation');
+			anifolder.add(settings, 'steps').step(1);
+			anifolder.add(settings, 'fps').step(1);
 			var colorfolder = gui.addFolder('Colors');
 			colorfolder.addColor(settings, 'firstColor');
 			colorfolder.addColor(settings, 'secondColor');
 			colorfolder.addColor(settings, 'backgroundColor');
 			gui.add(settings, 'randomizeRule');
+			gui.add(settings, 'randomizeBoth');
 			gui.add(settings, 'resetRule');
 			gui.add(settings, 'logRule');
 			gui.add(settings, 'inputRule');
