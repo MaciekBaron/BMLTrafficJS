@@ -24,3 +24,4 @@ outcomes.
 
 [See it in action](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html)
 
+*Warning: might create flashing images*
