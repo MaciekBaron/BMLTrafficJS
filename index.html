@@ -71,6 +71,8 @@
 
 			var rule = new Array();
 
+			console.log("The rule is " + settings.rule);
+
 			var ruleString = settings.rule.toString(3);
 
 			for (var i = 0; i < 27; i++) {
@@ -91,12 +93,13 @@
 		}
 
 		window.onload = function() {
+			var vars = getUrlVars();
 			var settings = {
 				width: 512,
 				height: 512,
-				density: parseInt(getUrlVars()['d']) || 40,
-				seed: getUrlVars()['s'] || 'Javascript',
-				rule: parseInt(getUrlVars()['r']) || 89096871199,
+				density: parseInt(vars['d']) || 40,
+				seed: vars['s'] || 'Javascript',
+				rule: parseInt(vars['r']) || 89096871199,
 				firstColor: [200,0,0],
 				secondColor: [0,0,200],
 				backgroundColor: "#ffffff",
