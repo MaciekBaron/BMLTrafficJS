@@ -71,8 +71,6 @@
 
 			var rule = new Array();
 
-			console.log("The rule is " + settings.rule);
-
 			var ruleString = settings.rule.toString(3);
 
 			for (var i = 0; i < 27; i++) {
@@ -132,7 +130,7 @@
 					this.resetAnimation();
 				},
 				setLocation: function () {
-					document.location.hash = "?r=" + this.rule + "&s=" + encodeURIComponent(this.seed) + "&d="+this.density;
+					document.location.hash = "?s=" + encodeURIComponent(this.seed) + "&d="+this.density+"&r=" + this.rule;
 				}
 			}
 
