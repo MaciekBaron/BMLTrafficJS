@@ -22,6 +22,16 @@ you can create other interesting animations. This means that the algorithm can w
 rules. Obviously most of these rules will create noise, but quite a few of them create beautiful or interesting 
 outcomes.
 
-[See it in action](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html)
+**[See it in action](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html)**
 
 *Warning: might create flashing images*
+
+Here's a list of interesing examples using different rules:
+* [Default](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html) (density 40, rule 89096871199)
+* ["Bleeding" squares](http://htmlpreview.github.com/?https://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=1&r=567013497971) (density: 1, rule 567013497971)
+* [Shifting glaciers](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=56&r=5568595274728) (density 56, rule 556859274728)
+* [Giant smoke clouds](http://htmlpreview.github.com/?https://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=ss&d=85&r=5901814860924) (either of the colours takes over depending on the seed, density 85, rule 5901814860924)
+* [Burning forest](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=42&r=4086339390855) (density 42, rule 4086339390855)
+* [Thin clouds moving](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=39&r=2930560032244) (density 39, rule 2930560032244)
+* [Patchy pattern](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=26&r=4039511111132) (denisty 26, rule 4039511111132)
+* [Disease spreading](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=slavery&d=41&r=1222888773354) (density 41, rule 1222888773354)
