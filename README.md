@@ -17,7 +17,7 @@ blocked by another car.
 What's interesting is the fact that even though the simulation only follows two simple rules (blue goes down, 
 red goes right) this is sufficient to create impressive, self-organizing structures and animations.
 
-What's even more interesting is that if you change the rule (which can be defined as 27 digit ternary number) 
+What's even more interesting is that if you change the rule (which can be defined as a 27 digit ternary number) 
 you can create other interesting animations. This means that the algorithm can work on 7625597484986 different 
 rules. Obviously most of these rules will create noise, but quite a few of them create beautiful or interesting 
 outcomes.
