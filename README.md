@@ -33,5 +33,5 @@ Here's a list of interesing examples using different rules:
 * [Giant smoke clouds](http://htmlpreview.github.com/?https://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=ss&d=85&r=5901814860924) (either of the colours takes over depending on the seed, density 85, rule 5901814860924)
 * [Burning forest](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=42&r=4086339390855) (density 42, rule 4086339390855)
 * [Thin clouds moving](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=39&r=2930560032244) (density 39, rule 2930560032244)
-* [Patchy pattern](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=26&r=4039511111132) (denisty 26, rule 4039511111132)
+* [Patchy pattern](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=26&r=4039511111132) (density 26, rule 4039511111132)
 * [Disease spreading](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=slavery&d=41&r=1222888773354) (density 41, rule 1222888773354)
