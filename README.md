@@ -35,3 +35,4 @@ Here's a list of interesing examples using different rules:
 * [Thin clouds moving](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=39&r=2930560032244) (density 39, rule 2930560032244)
 * [Patchy pattern](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=26&r=4039511111132) (density 26, rule 4039511111132)
 * [Disease spreading](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=slavery&d=41&r=1222888773354) (density 41, rule 1222888773354)
+* [Funny looking clouds](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html#?s=Javascript&d=44&r=3981204071203)
