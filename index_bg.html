@@ -1,0 +1,153 @@
+<html>
+	<head>
+		<script src="js/lib/dat.gui.min.js"></script>
+		<script src="js/core.js"></script>
+		<script src="js/rc4random.js"></script>
+		<style>
+
+		body {
+			background-color: #fff;
+			background: -webkit-canvas(csscanvas);
+			margin: 40px;
+			font: 13px/20px normal Helvetica, Arial, sans-serif;
+			color: #4F5155;
+		}
+
+		a {
+			color: #003399;
+			background-color: transparent;
+			font-weight: normal;
+		}
+
+		</style>
+	</head>
+	<body>
+		<script>
+		function loadVisualisation(settings) {
+			clearInterval(window.visInterval);
+			var ctx = document.getCSSCanvasContext("2d", "csscanvas", settings.width, settings.height);
+			var width = settings.width;
+			var height = settings.height;
+			document.body.style.backgroundColor = settings.backgroundColor;
+			main = new Array(height);
+
+			for (var i = 0; i < width; i++) {
+				main[i] = new Array(height);
+			}
+
+			var rcrand = new Rc4Random(settings.seed.toString());
+
+			for (var x = 0; x < width; x++) {
+				for (var y = 0; y < height; y++) {
+					main[x][y] = 0;
+					if (Math.floor(rcrand.getRandomNumber()*100)<settings.density) {
+						main[x][y] = Math.floor(rcrand.getRandomNumber()*2)+1;
+					}
+				}
+			}
+
+			var rule = new Array();
+
+			var ruleString = settings.rule.toString(3);
+
+			for (var i = 0; i < 27; i++) {
+				var q = ruleString.length-(27-i);
+				if (q < 0) {
+					rule.push(0);
+				} else {
+					rule.push(+ruleString.charAt(ruleString.length-(27-i)));
+				}
+			}
+
+			var engine = new BML(width, height, main, rule, {first: settings.firstColor, second: settings.secondColor});
+
+			window.visInterval = setInterval(function () {
+				engine.move_step(settings.steps);
+				engine.render(ctx, width, height);
+			}, 1000/settings.fps);
+		}
+
+		window.onload = function() {
+			var vars = getUrlVars();
+			var settings = {
+				width: 512,
+				height: 512,
+				density: parseInt(vars['d']) || 40,
+				seed: vars['s'] || 'Javascript',
+				rule: parseInt(vars['r']) || 89096871199,
+				firstColor: [200,0,0],
+				secondColor: [0,0,200],
+				backgroundColor: "#ffffff",
+				steps: 1,
+				fps: 60,
+				randomizeRule: function () {
+					this.rule = Math.floor(Math.random()*7625597484986);
+					this.resetAnimation();
+					
+				},
+				randomizeBoth: function () {
+					this.density = Math.floor(Math.random()*100);
+					this.randomizeRule();
+				},
+				resetRule: function () {
+					this.rule = 89096871199;
+					this.resetAnimation();
+				},
+				logRule: function () {
+					console.log("Current rule: " + this.rule);
+				},
+				inputRule: function () {
+					this.rule = +(window.prompt("Enter rule")) || this.rule;
+					this.resetAnimation();
+				},
+				resetAnimation: function () {
+					loadVisualisation(this);
+					this.setLocation();
+				},
+				valuesFromSeed: function () {
+					var rcrand = new Rc4Random(this.seed.toString());
+					this.rule = Math.floor(rcrand.getRandomNumber()*7625597484986);
+					this.density = Math.floor(rcrand.getRandomNumber()*100);
+					this.resetAnimation();
+				},
+				setLocation: function () {
+					document.location.hash = "?s=" + encodeURIComponent(this.seed) + "&d="+this.density+"&r=" + this.rule;
+				}
+			}
+
+			var gui = new dat.GUI();
+			gui.add(settings, 'width', 0, 1024).step(1);
+			gui.add(settings, 'height', 0, 1024).step(1);
+			gui.add(settings, 'seed');
+			gui.add(settings, 'valuesFromSeed');
+			gui.add(settings, 'density', 0, 100).step(1).listen();
+			gui.add(settings, 'rule', 0, 7625597484986).step(1).listen();
+			var anifolder = gui.addFolder('Animation');
+			anifolder.add(settings, 'steps').step(1);
+			anifolder.add(settings, 'fps').step(1);
+			var colorfolder = gui.addFolder('Colors');
+			colorfolder.addColor(settings, 'firstColor');
+			colorfolder.addColor(settings, 'secondColor');
+			colorfolder.addColor(settings, 'backgroundColor');
+			gui.add(settings, 'randomizeRule');
+			gui.add(settings, 'randomizeBoth');
+			gui.add(settings, 'resetRule');
+			gui.add(settings, 'logRule');
+			gui.add(settings, 'inputRule');
+			gui.add(settings, 'resetAnimation');
+
+			loadVisualisation(settings);
+
+			function getUrlVars() {
+				var vars = {};
+				var parts = window.location.hash.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+				    vars[key] = decodeURIComponent(value);
+				});
+				return vars;
+			}
+
+		};
+		
+		</script>
+	</body>
+</html>
