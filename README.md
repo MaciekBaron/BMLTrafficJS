@@ -23,6 +23,7 @@ rules. Obviously most of these rules will create noise, but quite a few of them 
 outcomes.
 
 **[See it in action](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html)**
+**[See it in action (as a background, Webkit only)](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index_bg.html)**
 
 *Warning: might create flashing images*
 
