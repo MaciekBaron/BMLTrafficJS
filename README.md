@@ -22,9 +22,10 @@ you can create other interesting animations. This means that the algorithm can w
 rules. Obviously most of these rules will create noise, but quite a few of them create beautiful or interesting 
 outcomes.
 
-**[See it in action](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html)**
-
 **[See it in action (as a background, Webkit only)](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index_bg.html)**
+
+**[See it in action (using canvas)](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index.html)**
+
 
 *Warning: might create flashing images*
 
