@@ -112,7 +112,34 @@
 				},
 				setLocation: function () {
 					document.location.hash = "?s=" + encodeURIComponent(this.seed) + "&d="+this.density+"&r=" + this.rule;
+				},
+				// Example rules
+				Bleeding_Squares: function () {
+					this.rule = 567013497971;
+					this.density = 1;
+					this.resetAnimation();
+				},
+				Shifting_Glaciers: function () {
+					this.rule = 5568595274728;
+					this.density = 56;
+					this.resetAnimation();
+				},
+				Giant_Clouds: function () {
+					this.rule = 5901814860924;
+					this.density = 85;
+					this.resetAnimation();
+				},
+				Disease: function () {
+					this.rule = 1222888773354;
+					this.density = 41;
+					this.resetAnimation();
+				},
+				Thin_Clouds: function () {
+					this.rule = 2930560032244;
+					this.density = 39;
+					this.resetAnimation();
 				}
+
 			}
 
 			var gui = new dat.GUI();
@@ -129,6 +156,12 @@
 			colorfolder.addColor(settings, 'firstColor');
 			colorfolder.addColor(settings, 'secondColor');
 			colorfolder.addColor(settings, 'backgroundColor');
+			var examplefolder = gui.addFolder('Rule Examples');
+			examplefolder.add(settings, "Bleeding_Squares");
+			examplefolder.add(settings, "Shifting_Glaciers");
+			examplefolder.add(settings, "Giant_Clouds");
+			examplefolder.add(settings, "Disease");
+			examplefolder.add(settings, "Thin_Clouds");
 			gui.add(settings, 'randomizeRule');
 			gui.add(settings, 'randomizeBoth');
 			gui.add(settings, 'resetRule');
