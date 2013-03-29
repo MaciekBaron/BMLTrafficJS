@@ -24,7 +24,7 @@
 	<body>
 		<script>
 		function loadVisualisation(settings) {
-			clearInterval(window.visInterval);
+			cancelAnimationFrame(window.visRequest);
 			var ctx = document.getCSSCanvasContext("2d", "csscanvas", settings.width, settings.height);
 			var width = settings.width;
 			var height = settings.height;
@@ -61,10 +61,11 @@
 
 			var engine = new BML(width, height, main, rule, {first: settings.firstColor, second: settings.secondColor});
 
-			window.visInterval = setInterval(function () {
-				engine.move_step(settings.steps);
+			(function animate() {
+				window.visRequest = requestAnimationFrame(animate);
+				engine.move_step(1);
 				engine.render(ctx, width, height);
-			}, 1000/settings.fps);
+			})();;
 		}
 
 		window.onload = function() {
