@@ -48,7 +48,10 @@ BML.prototype = {
 		This is the rendering function. We simply generate image data based
 		on the calculated values.
 	*/
-	render: function(context, canvasWidth, canvasHeight) {
+	render: function(context, canvasWidth, canvasHeight, preRenderCallback, postRenderCallback) {
+		
+		if (typeof preRenderCallback == "function") preRenderCallback();
+
 		// Get canvas data so that we can create image data
 		var canvasData = context.getImageData(0, 0, canvasWidth, canvasHeight);
 
@@ -65,5 +68,7 @@ BML.prototype = {
 		}
 
 		context.putImageData(canvasData, 0, 0);
+
+		if (typeof postRenderCallback == "function") postRenderCallback();
 	}
 }
