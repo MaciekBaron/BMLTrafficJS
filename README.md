@@ -18,9 +18,9 @@ What's interesting is the fact that even though the simulation only follows two 
 red goes right) this is sufficient to create impressive, self-organizing structures and animations.
 
 What's even more interesting is that if you change the rule (which can be defined as a 27 digit ternary number) 
-you can create other interesting animations. This means that the algorithm can work on 7625597484986 different 
-rules. Obviously most of these rules will create noise, but quite a few of them create beautiful or interesting 
-outcomes.
+you can create other interesting animations. This means that the algorithm can work on 7625597484986 (over 7 
+trillion) different rules. Obviously most of these rules will create noise, but quite a few of them create 
+beautiful or interesting outcomes.
 
 **[See it in action (as a background, Webkit only)](http://htmlpreview.github.com/?http://github.com/MaciekBaron/BMLTrafficJS/blob/master/index_bg.html)**
 
