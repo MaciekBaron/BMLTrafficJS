@@ -85,11 +85,11 @@
 			var ruleString = settings.rule.toString(3);
 
 			for (var i = 0; i < 27; i++) {
-				var q = ruleString.length-(27-i);
+				var q = ruleString.length - 1 - i;
 				if (q < 0) {
 					rule.push(0);
 				} else {
-					rule.push(+ruleString.charAt(ruleString.length-(27-i)));
+					rule.push(+ruleString.charAt(q));
 				}
 			}
 
@@ -109,7 +109,7 @@
 				height: 512,
 				density: parseInt(vars['d']) || 40,
 				seed: vars['s'] || 'Javascript',
-				rule: parseInt(vars['r']) || 89096871199,
+				rule: parseInt(vars['r']) || 3922832263383,
 				firstColor: [200,0,0],
 				secondColor: [0,0,200],
 				backgroundColor: "#ffffff",
@@ -125,7 +125,7 @@
 					this.randomizeRule();
 				},
 				resetRule: function () {
-					this.rule = 89096871199;
+					this.rule = 3922832263383;
 					this.resetAnimation();
 				},
 				logRule: function () {
